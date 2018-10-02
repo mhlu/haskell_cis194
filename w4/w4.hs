@@ -85,6 +85,9 @@ map' f = foldr (\x acc -> f x : acc) []
 myFoldl :: (a -> b -> a) -> a -> [b] -> a
 myFoldl f base xs = foldr (\x accFcn -> accFcn . (`f` x) ) id xs base
 
+myFoldr :: (b -> a -> a) -> a -> [b] -> a
+myFoldr f base xs = foldl (\accFcn x -> accFcn . (x `f`) ) id xs base
+
 -- ex 4
 cartProd :: [a] -> [b] -> [(a, b)]
 cartProd xs ys = [(x,y) | x <- xs, y <- ys]
